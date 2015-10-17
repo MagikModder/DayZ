@@ -1,7 +1,6 @@
 package dayz.common.items.weapons;
 
 import net.minecraft.item.Item;
-import dayz.common.items.DayZItems;
 
 public class ItemRemington implements IGun
 {
@@ -32,6 +31,6 @@ public class ItemRemington implements IGun
     @Override
     public Item getAmmo()
     {
-        return DayZItems.ammoRemington;
+        return null;
     }
 }

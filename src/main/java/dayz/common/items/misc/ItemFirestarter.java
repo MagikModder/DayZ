@@ -11,7 +11,7 @@ public class ItemFirestarter extends ItemMod
 {
     public ItemFirestarter(int itemId, int numOfUses)
     {
-        super(itemId);
+        super();
         setMaxDamage(numOfUses);
     }
 

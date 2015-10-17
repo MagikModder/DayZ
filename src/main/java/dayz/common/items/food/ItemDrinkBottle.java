@@ -18,7 +18,7 @@ public class ItemDrinkBottle extends ItemMod
 
     public ItemDrinkBottle(int itemId, int healAmount)
     {
-        super(itemId);
+        super();
         this.healAmount = healAmount;
         isAlcohol = false;
         setMaxDamage(3);

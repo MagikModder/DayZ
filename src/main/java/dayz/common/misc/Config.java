@@ -3,11 +3,10 @@ package dayz.common.misc;
 import java.io.File;
 
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import dayz.common.blocks.Blocks;
-import dayz.common.effects.Effect;
-import dayz.common.items.DayZItems;
-import dayz.common.world.WorldTypes;
-import dayz.common.world.biomes.Biomes;
+import dayz.common.blocks.BlocksDayZ;
+import dayz.common.effects.EffectDayZ;
+import dayz.common.world.WorldTypesDayZ;
+import dayz.common.world.biomes.BiomesDayZ;
 import net.minecraftforge.common.config.Configuration;
 
 public class Config
@@ -22,10 +21,9 @@ public class Config
 
         config.load();
 
-        Blocks.blockConfig(config);
-        DayZItems.itemConfig(config);
-         WorldTypes.worldTypeConfig(config);
-        Effect.effectConfig(config);
+        BlocksDayZ.blockConfig(config);
+        WorldTypesDayZ.worldTypeConfig(config);
+        EffectDayZ.effectConfig(config);
 
         debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false, "Should DayZ log extra information?").getBoolean(false);
         structureGenerationChance = config.get(Configuration.CATEGORY_GENERAL, "structureGenerationChance", 5, "1 in x chance to generate a structure in a given chunk").getInt(5);

@@ -2,8 +2,12 @@ package dayz.client;
 
 import net.minecraftforge.client.event.sound.SoundLoadEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import dayz.DayZ;
 
+
+@SideOnly(Side.CLIENT)
 public class ClientEvents
 {
 

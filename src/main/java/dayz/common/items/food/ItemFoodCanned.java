@@ -14,13 +14,12 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dayz.DayZ;
 import dayz.common.items.ItemMod;
-import dayz.common.items.DayZItems;
 
 public class ItemFoodCanned extends ItemMod
 {
     public ItemFoodCanned(int id, int healAmount)
     {
-        super(id);
+        super();
         setHasSubtypes(true);
         this.healAmount = healAmount;
         setHasSubtypes(true);
@@ -37,7 +36,7 @@ public class ItemFoodCanned extends ItemMod
     @Override
     public ItemStack onEaten(ItemStack itemStack, World world, EntityPlayer entityPlayer)
     {
-		entityPlayer.inventory.addItemStackToInventory(new ItemStack(DayZItems.foodCanEmpty, 1, itemStack.getItemDamage()));
+	//	entityPlayer.inventory.addItemStackToInventory(new ItemStack(DayZItems.foodCanEmpty, 1, itemStack.getItemDamage()));
         --itemStack.stackSize;
         entityPlayer.getFoodStats().addStats(healAmount, saturationModifier);
         world.playSoundAtEntity(entityPlayer, "random.burp", 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
@@ -47,7 +46,7 @@ public class ItemFoodCanned extends ItemMod
 
     protected void onFoodEaten(ItemStack itemStack, World world, EntityPlayer entityPlayer)
     {
-		entityPlayer.inventory.addItemStackToInventory(new ItemStack(DayZItems.foodCanEmpty, getDamage(itemStack)));
+	//	entityPlayer.inventory.addItemStackToInventory(new ItemStack(DayZItems.foodCanEmpty, getDamage(itemStack)));
     }
 
     @Override

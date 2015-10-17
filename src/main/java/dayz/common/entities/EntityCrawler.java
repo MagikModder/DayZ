@@ -17,7 +17,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-import dayz.common.effects.Effect;
+import dayz.common.effects.EffectDayZ;
 import dayz.common.effects.EnactEffect;
 
 public class EntityCrawler extends EntityMob
@@ -123,11 +123,11 @@ public class EntityCrawler extends EntityMob
             int k = rand.nextInt(20);
             if (j == 0)
             {
-                ((EntityLivingBase) entity).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 120, 1));
+                ((EntityLivingBase) entity).addPotionEffect(new EnactEffect(EffectDayZ.bleeding.getId(), 20 * 120, 1));
             }
             if (k == 0)
             {
-                ((EntityLivingBase) entity).addPotionEffect(new EnactEffect(Effect.zombification.getId(), 20 * 120, 1));
+                ((EntityLivingBase) entity).addPotionEffect(new EnactEffect(EffectDayZ.zombification.getId(), 20 * 120, 1));
             }
             return entity.attackEntityFrom(DamageSource.causeMobDamage(this), 2);
         }
@@ -137,11 +137,11 @@ public class EntityCrawler extends EntityMob
             int k = rand.nextInt(10);
             if (j == 0)
             {
-                ((EntityLivingBase) entity).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 120, 1));
+                ((EntityLivingBase) entity).addPotionEffect(new EnactEffect(EffectDayZ.bleeding.getId(), 20 * 120, 1));
             }
             if (k == 0)
             {
-                ((EntityLivingBase) entity).addPotionEffect(new EnactEffect(Effect.zombification.getId(), 20 * 120, 1));
+                ((EntityLivingBase) entity).addPotionEffect(new EnactEffect(EffectDayZ.zombification.getId(), 20 * 120, 1));
             }
             return entity.attackEntityFrom(DamageSource.causeMobDamage(this), 3);
         }
@@ -151,11 +151,11 @@ public class EntityCrawler extends EntityMob
             int k = rand.nextInt(6);
             if (j == 0)
             {
-                ((EntityLivingBase) entity).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 120, 1));
+                ((EntityLivingBase) entity).addPotionEffect(new EnactEffect(EffectDayZ.bleeding.getId(), 20 * 120, 1));
             }
             if (k == 0)
             {
-                ((EntityLivingBase) entity).addPotionEffect(new EnactEffect(Effect.zombification.getId(), 20 * 120, 1));
+                ((EntityLivingBase) entity).addPotionEffect(new EnactEffect(EffectDayZ.zombification.getId(), 20 * 120, 1));
             }
             return entity.attackEntityFrom(DamageSource.causeMobDamage(this), 6);
         }

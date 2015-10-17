@@ -14,7 +14,7 @@ public class ItemMod extends Item
 {
     public List<String> subNames;
 
-    public ItemMod(int itemId)
+    public ItemMod()
     {
         super();
         maxStackSize = 1;

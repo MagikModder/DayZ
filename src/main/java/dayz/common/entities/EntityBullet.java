@@ -10,7 +10,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
-import dayz.common.effects.Effect;
+import dayz.common.effects.EffectDayZ;
 import dayz.common.effects.EnactEffect;
 
 public class EntityBullet extends EntityThrowable
@@ -91,7 +91,7 @@ public class EntityBullet extends EntityThrowable
                     int j = rand.nextInt(10);
                     if (j == 0)
                     {
-                        ((EntityLivingBase) movingObjectPosition.entityHit).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 120, 1));
+                        ((EntityLivingBase) movingObjectPosition.entityHit).addPotionEffect(new EnactEffect(EffectDayZ.bleeding.getId(), 20 * 120, 1));
                     }
                 }
                 else if (worldObj.difficultySetting.equals(2))
@@ -99,7 +99,7 @@ public class EntityBullet extends EntityThrowable
                     int j = rand.nextInt(5);
                     if (j == 0)
                     {
-                        ((EntityLivingBase) movingObjectPosition.entityHit).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 120, 1));
+                        ((EntityLivingBase) movingObjectPosition.entityHit).addPotionEffect(new EnactEffect(EffectDayZ.bleeding.getId(), 20 * 120, 1));
                     }
                 }
                 else if (worldObj.difficultySetting.equals(3))
@@ -107,7 +107,7 @@ public class EntityBullet extends EntityThrowable
                     int j = rand.nextInt(3);
                     if (j == 0)
                     {
-                        ((EntityLivingBase) movingObjectPosition.entityHit).addPotionEffect(new EnactEffect(Effect.bleeding.getId(), 20 * 120, 1));
+                        ((EntityLivingBase) movingObjectPosition.entityHit).addPotionEffect(new EnactEffect(EffectDayZ.bleeding.getId(), 20 * 120, 1));
                     }
                 }
             }
@@ -121,14 +121,13 @@ public class EntityBullet extends EntityThrowable
             if (worldObj.getBlock(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ) == Blocks.redstone_wire || worldObj.getBlock(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ) == Blocks.grass)
             {
                 Block field_145785_f = null;
-				worldObj.setBlock(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ, field_145785_f, 0, bulletdamage);
+
                 worldObj.playSoundEffect(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ, "random.glass", 1.0F, 1.0F);
                 setDead();
             }
             else if (worldObj.getBlock(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ) == Blocks.tallgrass)
             {
                 Block field_145785_f = null;
-				worldObj.setBlock(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ, field_145785_f, 0, bulletdamage);
                 worldObj.playSoundEffect(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ, "step.grass", 1.0F, 1.0F);
                 setDead();
             }

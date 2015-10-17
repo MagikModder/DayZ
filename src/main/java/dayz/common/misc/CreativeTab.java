@@ -3,7 +3,7 @@ package dayz.common.misc;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import dayz.common.items.DayZItems;
+import dayz.common.items.RegisterItemsDayZ;
 
 public class CreativeTab extends CreativeTabs
 {
@@ -12,15 +12,11 @@ public class CreativeTab extends CreativeTabs
         super("creativeTabDayZ");
     }
 
-    @Override
-    public ItemStack getIconItemStack()
-    {
-        return new ItemStack(DayZItems.gunAk74u, 1, 0);
-    }
+
 
 	@Override
 	public Item getTabIconItem() {
 	
-		return DayZItems.gunGlock17;
+		return RegisterItemsDayZ.Glock;
 	}
 }

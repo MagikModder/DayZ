@@ -1,6 +1,9 @@
 package dayz;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraftforge.common.MinecraftForge;
+
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -11,12 +14,20 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import dayz.common.CommonEvents;
 import dayz.common.CommonProxy;
+import dayz.common.blocks.BlocksDayZ;
+import dayz.common.effects.EffectDayZ;
+import dayz.common.entities.RegisterEntitysDayZ;
+import dayz.common.items.RegisterItemsDayZ;
 import dayz.common.misc.CreativeTab;
 import dayz.common.thirst.Thirst;
+import dayz.common.world.WorldTypesDayZ;
+import dayz.common.world.biomes.BiomesDayZ;
+import dayz.common.world.generation.StructureHandlerDayZ;
 
 //@NetworkMod(clientSideRequired = true, serverSideRequired = false)
-@Mod(modid = "DayZ", name = "DayZ Minecraft")
+@Mod(modid = Reference.MODID, name = Reference.NAME, version = Reference.VERSION)
 public class DayZ
 {
     public Thirst thirst;
@@ -38,6 +49,20 @@ public class DayZ
     @EventHandler
     public void preload(FMLPreInitializationEvent event)
     {
+    	
+        MinecraftForge.EVENT_BUS.register(new CommonEvents());
+    	FMLCommonHandler.instance().bus().register(new CommonEvents());
+    	
+    	RegisterItemsDayZ.load();
+    	RegisterEntitysDayZ.load();
+    	
+    	
+        BlocksDayZ.loadBlocks();
+        BiomesDayZ.loadBiomes();
+        BiomesDayZ.addVillages();
+        WorldTypesDayZ.loadWorldTypes();
+        StructureHandlerDayZ.addDefaultStructures();
+        
         proxy.preload(event);
     }
 

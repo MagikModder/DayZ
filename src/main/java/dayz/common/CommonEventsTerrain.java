@@ -5,8 +5,8 @@ import net.minecraftforge.event.terraingen.WorldTypeEvent;
 import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import dayz.common.misc.Config;
-import dayz.common.world.WorldTypes;
-import dayz.common.world.generation.StructureHandler;
+import dayz.common.world.WorldTypesDayZ;
+import dayz.common.world.generation.StructureHandlerDayZ;
 import dayz.common.world.genlayer.GenLayerDayZ;
 
 public class CommonEventsTerrain
@@ -14,16 +14,16 @@ public class CommonEventsTerrain
     @SubscribeEvent
     public void initBiomeGens(WorldTypeEvent.InitBiomeGens event)
     {
-        if (event.worldType instanceof WorldTypes)
+        if (event.worldType instanceof WorldTypesDayZ)
         {
-            event.newBiomeGens = GenLayerDayZ.getGenLayers(event.seed, (WorldTypes)event.worldType);
+            event.newBiomeGens = GenLayerDayZ.getGenLayers(event.seed, (WorldTypesDayZ)event.worldType);
         }
     }
 
     @SubscribeEvent
     public void populateChunk(PopulateChunkEvent.Populate event)
     {
-        if (event.world.getWorldInfo().getTerrainType() instanceof WorldTypes)
+        if (event.world.getWorldInfo().getTerrainType() instanceof WorldTypesDayZ)
         {
             if (event.type == PopulateChunkEvent.Populate.EventType.LAKE)
             {
@@ -39,7 +39,7 @@ public class CommonEventsTerrain
             }
         }
 
-        if (event.world.getWorldInfo().getTerrainType() instanceof WorldTypes && event.world.rand.nextInt(Config.structureGenerationChance) == 0)
+        if (event.world.getWorldInfo().getTerrainType() instanceof WorldTypesDayZ && event.world.rand.nextInt(Config.structureGenerationChance) == 0)
         {
             for (int i = 0; i < 12; ++i)
             {
@@ -47,7 +47,7 @@ public class CommonEventsTerrain
                 int y = event.rand.nextInt(128);
                 int z = event.chunkZ * 16 + event.rand.nextInt(16) + 8;
 
-                StructureHandler.generateStructure(event.world, event.rand, x, y, z);
+                StructureHandlerDayZ.generateStructure(event.world, event.rand, x, y, z);
             }
         }
     }

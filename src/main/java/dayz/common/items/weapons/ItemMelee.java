@@ -16,7 +16,7 @@ public class ItemMelee extends ItemMod
 
     public ItemMelee(int itemId, float damage)
     {
-        super(itemId);
+        super();
         maxStackSize = 1;
         setMaxDamage(32);
         weaponDamage = damage;

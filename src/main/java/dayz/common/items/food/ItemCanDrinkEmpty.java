@@ -17,7 +17,7 @@ public class ItemCanDrinkEmpty extends ItemMod
 
     public ItemCanDrinkEmpty(int itemId)
     {
-        super(itemId);
+        super();
         setHasSubtypes(true);
     }
 

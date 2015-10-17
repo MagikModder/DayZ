@@ -19,7 +19,7 @@ public class ItemCanEmpty extends ItemMod
 	
     public ItemCanEmpty(int itemId, boolean isFood)
     {
-        super(itemId);
+        super();
         setHasSubtypes(true);
         this.isFood = isFood;
     }

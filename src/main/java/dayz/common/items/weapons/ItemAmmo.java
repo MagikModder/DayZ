@@ -6,7 +6,7 @@ public class ItemAmmo extends ItemMod
 {
     public ItemAmmo(int itemId)
     {
-        super(itemId);
+        super();
         maxStackSize = 1;
     }
 }

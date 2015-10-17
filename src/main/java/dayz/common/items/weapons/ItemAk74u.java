@@ -1,7 +1,6 @@
 package dayz.common.items.weapons;
 
 import net.minecraft.item.Item;
-import dayz.common.items.DayZItems;
 
 public class ItemAk74u implements IGun
 {
@@ -29,9 +28,15 @@ public class ItemAk74u implements IGun
         return "ak74u";
     }
 
-    @Override
-    public Item getAmmo()
-    {
-        return DayZItems.ammoAk74u;
-    }
+	@Override
+	public Item getAmmo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+//    @Override
+//   public Item getAmmo()
+//    {
+//        return DayZItems.ammoAk74u;
+//    }
 }

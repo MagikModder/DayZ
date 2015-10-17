@@ -1,21 +1,32 @@
 package dayz.common;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.WeightedRandomChestContent;
+import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.WorldEvent;
+
+import com.mojang.realmsclient.exception.McoHttpException;
+
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import dayz.common.blocks.Blocks;
-import dayz.common.effects.Effect;
+import cpw.mods.fml.relauncher.SideOnly;
+import dayz.common.blocks.BlocksDayZ;
+import dayz.common.effects.EffectDayZ;
 import dayz.common.entities.EntityZombieDayZ;
-import dayz.common.items.DayZItems;
+import dayz.common.gui.GuiMainMenuDayZ;
 import dayz.common.items.weapons.ItemGunAuto;
 import dayz.common.misc.ChatHandler;
 import dayz.common.misc.DamageType;
 import dayz.common.misc.LootManager;
+
+
+
 
 public class CommonEvents
 {
@@ -27,7 +38,7 @@ public class CommonEvents
             if (obj instanceof TileEntityChest)
             {
                 TileEntityChest chest = (TileEntityChest) obj;
-                if (event.world.getBlock(chest.xCoord, chest.yCoord, chest.zCoord) == Blocks.chestLoot)
+                if (event.world.getBlock(chest.xCoord, chest.yCoord, chest.zCoord) == BlocksDayZ.chestLoot)
                 {
                     boolean continueChecking = true;
                     int slotNumber = 0;
@@ -55,7 +66,30 @@ public class CommonEvents
             }
         }
     }
-
+    
+    @SubscribeEvent
+	public void onGuiOpenEvent(GuiOpenEvent event) {
+		
+    	if (event.gui instanceof GuiMainMenu) {
+				
+    			event.setCanceled(true);
+    			
+				Minecraft.getMinecraft().currentScreen=(
+				
+						new GuiMainMenuDayZ());
+				
+//			} else {
+				
+//					Minecraft.getMinecraft().displayGuiScreen(
+//							
+//							new GuiMainMenuDayZ());
+			
+}
+    
+    	
+    	
+		}
+		
     @SubscribeEvent
     public void playerInteract(EntityInteractEvent event)
     {
@@ -69,11 +103,11 @@ public class CommonEvents
     @SubscribeEvent
     public void onEntityUpdate(LivingUpdateEvent event)
     {
-        if (event.entityLiving.isPotionActive(Effect.bleeding))
+        if (event.entityLiving.isPotionActive(EffectDayZ.bleeding))
         {
-            if (event.entityLiving.getActivePotionEffect(Effect.bleeding).getDuration() == 0)
+            if (event.entityLiving.getActivePotionEffect(EffectDayZ.bleeding).getDuration() == 0)
             {
-                event.entityLiving.removePotionEffect(Effect.bleeding.id);
+                event.entityLiving.removePotionEffect(EffectDayZ.bleeding.id);
                 return;
             }
             if (event.entityLiving.worldObj.rand.nextInt(20) == 0)
@@ -81,11 +115,11 @@ public class CommonEvents
                 event.entityLiving.attackEntityFrom(DamageType.bleedOut, 2);
             }
         }
-        if (event.entityLiving.isPotionActive(Effect.zombification))
+        if (event.entityLiving.isPotionActive(EffectDayZ.zombification))
         {
-            if (event.entityLiving.getActivePotionEffect(Effect.zombification).getDuration() == 0)
+            if (event.entityLiving.getActivePotionEffect(EffectDayZ.zombification).getDuration() == 0)
             {
-                event.entityLiving.removePotionEffect(Effect.zombification.id);
+                event.entityLiving.removePotionEffect(EffectDayZ.zombification.id);
                 return;
             }
             if (event.entityLiving.worldObj.rand.nextInt(20) == 0)

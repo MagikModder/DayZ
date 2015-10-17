@@ -15,7 +15,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dayz.DayZ;
 import dayz.common.items.ItemMod;
-import dayz.common.items.DayZItems;
 
 public class ItemDrinkCanned extends ItemMod
 {
@@ -30,7 +29,7 @@ public class ItemDrinkCanned extends ItemMod
 
     public ItemDrinkCanned(int itemId, int healAmount)
     {
-        super(itemId);
+        super();
         this.healAmount = healAmount;
         setHasSubtypes(true);
     }
@@ -38,7 +37,7 @@ public class ItemDrinkCanned extends ItemMod
     @Override
     public ItemStack onEaten(ItemStack itemStack, World world, EntityPlayer entityPlayer)
     {
-		entityPlayer.inventory.addItemStackToInventory(new ItemStack(DayZItems.drinkCanEmpty, 1, itemStack.getItemDamage()));
+	//	entityPlayer.inventory.addItemStackToInventory(new ItemStack(DayZItems.drinkCanEmpty, 1, itemStack.getItemDamage()));
         --itemStack.stackSize;
         DayZ.thirst().subtractThirst(entityPlayer, healAmount);
         onFoodEaten(itemStack, world, entityPlayer);
@@ -50,7 +49,7 @@ public class ItemDrinkCanned extends ItemMod
         if (!world.isRemote && potionId > 0 && world.rand.nextFloat() < potionEffectProbability)
         {
             entityPlayer.addPotionEffect(new PotionEffect(potionId, potionDuration * 20, potionAmplifier));
-			entityPlayer.inventory.addItemStackToInventory(new ItemStack(DayZItems.drinkCanEmpty, getDamage(itemStack)));
+		//	entityPlayer.inventory.addItemStackToInventory(new ItemStack(DayZItems.drinkCanEmpty, getDamage(itemStack)));
         }
     }
 

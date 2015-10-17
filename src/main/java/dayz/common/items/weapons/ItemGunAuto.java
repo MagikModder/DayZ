@@ -14,7 +14,7 @@ public class ItemGunAuto extends ItemMod
 
     public ItemGunAuto(int itemId, IGun iGun)
     {
-        super(itemId);
+        super();
         gun = iGun;
         maxStackSize = 1;
         setMaxDamage(gun.getRounds());

@@ -12,9 +12,9 @@ public class ItemGunSemi extends ItemMod
 {
     private IGun gun;
 
-    public ItemGunSemi(int i, IGun iGun)
+    public ItemGunSemi(IGun iGun)
     {
-        super(i);
+        super();
         gun = iGun;
         maxStackSize = 1;
         setMaxDamage(gun.getRounds());

@@ -18,19 +18,18 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import dayz.DayZ;
-import dayz.common.blocks.Blocks;
-import dayz.common.effects.Effect;
+import dayz.common.blocks.BlocksDayZ;
+import dayz.common.effects.EffectDayZ;
 import dayz.common.entities.EntityBullet;
 import dayz.common.entities.EntityCrawler;
 import dayz.common.entities.EntityZombieDayZ;
-import dayz.common.items.DayZItems;
 import dayz.common.misc.ChatHandler;
 import dayz.common.misc.Config;
 import dayz.common.misc.LootManager;
 import dayz.common.thirst.Thirst;
-import dayz.common.world.WorldTypes;
-import dayz.common.world.biomes.Biomes;
-import dayz.common.world.generation.StructureHandler;
+import dayz.common.world.WorldTypesDayZ;
+import dayz.common.world.biomes.BiomesDayZ;
+import dayz.common.world.generation.StructureHandlerDayZ;
 
 public class CommonProxy
 {
@@ -43,36 +42,12 @@ public class CommonProxy
         ChatHandler.logInfo("Config loaded.");
     }
 
-    public void load(FMLInitializationEvent event)
+    @SuppressWarnings("deprecation")
+	public void load(FMLInitializationEvent event)
     {
-    	  MinecraftForge.EVENT_BUS.register(new CommonPlayerHandler());
-    	  FMLCommonHandler.instance().bus().register(new CommonTickHandler());
 
-        Blocks.loadBlocks();
-        DayZItems.loadItems();
-        Biomes.loadBiomes();
-        Biomes.addVillages();
-        WorldTypes.loadWorldTypes();
-        Effect.loadEffects();
-        StructureHandler.addDefaultStructures();
-        Effect.register();
-/*
-        EntityRegistry.registerGlobalEntityID(EntityZombieDayZ.class, "Zombie", EntityRegistry.findGlobalUniqueEntityId(), 1, 2);
-        EntityRegistry.registerGlobalEntityID(EntityCrawler.class, "Crawler", EntityRegistry.findGlobalUniqueEntityId(), 1, 2);
 
-        EntityRegistry.registerModEntity(EntityBullet.class, "Bullet", 1, DayZ.INSTANCE, 250, 5, true);
 
-        EntityRegistry.addSpawn(EntityZombieDayZ.class, 200, 1, 4, EnumCreatureType.creature, Biomes.biomeForest, Biomes.biomePlains, Biomes.biomeRiver, Biomes.biomeSnowMountains, Biomes.biomeSnowPlains);
-        EntityRegistry.addSpawn(EntityCrawler.class, 100, 1, 4, EnumCreatureType.creature, Biomes.biomeForest, Biomes.biomePlains, Biomes.biomeRiver, Biomes.biomeSnowMountains, Biomes.biomeSnowPlains);
-*/
-        if (Config.canSpawnZombiesInDefaultWorld == true)
-        {
-            EntityRegistry.addSpawn(EntityZombieDayZ.class, 200, 1, 4, EnumCreatureType.creature, BiomeGenBase.beach);
-            EntityRegistry.addSpawn(EntityCrawler.class, 100, 1, 4, EnumCreatureType.creature, BiomeGenBase.beach);
-        }
-
-        LanguageRegistry.instance().addStringLocalization("entity.Crawler.name", "en_US", "Crawler");
-        LanguageRegistry.instance().addStringLocalization("entity.DayZZombie.name", "en_US", "Zombie");
         LanguageRegistry.instance().addStringLocalization("generator.DAYZBASE", "en_US", "Day Z Original");
         LanguageRegistry.instance().addStringLocalization("generator.DAYZSNOW", "en_US", "Day Z Snow");
         LanguageRegistry.instance().addStringLocalization("itemGroup.creativeTabDayZ", "en_US", "Day Z");
