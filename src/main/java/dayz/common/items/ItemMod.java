@@ -1,4 +1,4 @@
-package dayz.common.items;
+	package dayz.common.items;
 
 import java.util.ArrayList;
 import java.util.List;

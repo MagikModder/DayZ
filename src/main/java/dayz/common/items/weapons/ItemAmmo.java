@@ -4,7 +4,7 @@ import dayz.common.items.ItemMod;
 
 public class ItemAmmo extends ItemMod
 {
-    public ItemAmmo(int itemId)
+    public ItemAmmo()
     {
         super();
         maxStackSize = 1;

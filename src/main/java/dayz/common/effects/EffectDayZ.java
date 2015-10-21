@@ -24,24 +24,24 @@ public class EffectDayZ extends Potion
         return this;
     }
 
-   /*
+   
       public static void loadEffects()
     
     {
         bleeding = new EffectDayZ(bleedingId, true, 5149489, "Bleeding");
         zombification = new EffectDayZ(zombificationId, true, 5149489, "Zombification");
     }
-*/
+
     public static void effectConfig(Configuration config)
     {
         bleedingId = config.get("effect", "bleedingId", 29, "Bleeding Effect ID").getInt();
         zombificationId = config.get("effect", "zombificationId", 30, "Zombification Effect ID").getInt();
     }
-/*
+
     public static void register()
     {
         Potion.potionTypes[bleeding.getId()] = bleeding;
         Potion.potionTypes[zombification.getId()] = zombification;
     }
-    */
+    
 }

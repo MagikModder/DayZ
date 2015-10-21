@@ -100,29 +100,30 @@ public class CommonEvents
     //    }
     }
 
+    /*
     @SubscribeEvent
     public void onEntityUpdate(LivingUpdateEvent event)
     {
-        if (event.entityLiving.isPotionActive(EffectDayZ.bleeding))
+   //     if (event.entityLiving.isPotionActive(EffectDayZ.bleeding))
         {
-            if (event.entityLiving.getActivePotionEffect(EffectDayZ.bleeding).getDuration() == 0)
+    //        if (event.entityLiving.getActivePotionEffect(EffectDayZ.bleeding).getDuration() == 0)
             {
                 event.entityLiving.removePotionEffect(EffectDayZ.bleeding.id);
                 return;
             }
-            if (event.entityLiving.worldObj.rand.nextInt(20) == 0)
+    //        if (event.entityLiving.worldObj.rand.nextInt(20) == 0)
             {
                 event.entityLiving.attackEntityFrom(DamageType.bleedOut, 2);
             }
         }
-        if (event.entityLiving.isPotionActive(EffectDayZ.zombification))
+   //     if (event.entityLiving.isPotionActive(EffectDayZ.zombification))
         {
-            if (event.entityLiving.getActivePotionEffect(EffectDayZ.zombification).getDuration() == 0)
+     //       if (event.entityLiving.getActivePotionEffect(EffectDayZ.zombification).getDuration() == 0)
             {
-                event.entityLiving.removePotionEffect(EffectDayZ.zombification.id);
-                return;
+       //         event.entityLiving.removePotionEffect(EffectDayZ.zombification.id);
+         //       return;
             }
-            if (event.entityLiving.worldObj.rand.nextInt(20) == 0)
+           // if (event.entityLiving.worldObj.rand.nextInt(20) == 0)
             {
                 if (event.entityLiving.getHealth() > 1.0F)
                 {
@@ -138,4 +139,5 @@ public class CommonEvents
             }
         }
     }
+    */
 }

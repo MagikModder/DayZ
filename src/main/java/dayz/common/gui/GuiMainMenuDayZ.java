@@ -36,10 +36,13 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiSelectWorld;
 import net.minecraft.client.gui.GuiYesNo;
 import net.minecraft.client.gui.GuiYesNoCallback;
+import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.realms.RealmsBridge;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
@@ -53,16 +56,11 @@ import net.minecraftforge.client.ForgeHooksClient;
 public class GuiMainMenuDayZ extends GuiScreen implements GuiYesNoCallback
 {
     private static final Logger logger = LogManager.getLogger();
-    /** The RNG used by the Main Menu Screen. */
     private static final Random rand = new Random();
-    /** Counts the number of screen updates. */
     private float updateCounter;
-    /** The splash message. */
     private String splashText;
     private GuiButton buttonResetDemo;
-    /** Timer used to rotate the panorama, increases every tick. */
     private int panoramaTimer;
-    /** Texture allocated for the current viewport of the main menu's panorama background. */
     private DynamicTexture viewportTexture;
     private final Object field_104025_t = new Object();
     private String field_92025_p;
@@ -70,7 +68,6 @@ public class GuiMainMenuDayZ extends GuiScreen implements GuiYesNoCallback
     private String field_104024_v;
     private static final ResourceLocation splashTexts = new ResourceLocation("texts/splashes.txt");
     private static final ResourceLocation minecraftTitleTextures = new ResourceLocation("textures/gui/title/title.png");
-    /** An array of all the paths to the panorama pictures. */
     private static final ResourceLocation[] titlePanoramaPaths = new ResourceLocation[] {new ResourceLocation("textures/gui/title/background/panorama_0.png"), new ResourceLocation("textures/gui/title/background/panorama_1.png"), new ResourceLocation("textures/gui/title/background/panorama_2.png"), new ResourceLocation("textures/gui/title/background/panorama_3.png"), new ResourceLocation("textures/gui/title/background/panorama_4.png"), new ResourceLocation("textures/gui/title/background/panorama_5.png")};
     public static final String field_96138_a = "Please click " + EnumChatFormatting.UNDERLINE + "here" + EnumChatFormatting.RESET + " for more information.";
     private int field_92024_r;
@@ -81,7 +78,11 @@ public class GuiMainMenuDayZ extends GuiScreen implements GuiYesNoCallback
     private int field_92019_w;
     private ResourceLocation field_110351_G;
     private static final String __OBFID = "CL_00001154";
+	EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+	ModelBase model = new ModelBiped();
+    
 
+    
     public GuiMainMenuDayZ()
     {
         this.field_146972_A = field_96138_a;
@@ -143,31 +144,22 @@ public class GuiMainMenuDayZ extends GuiScreen implements GuiYesNoCallback
         }
     }
 
-    /**
-     * Called from the main game loop to update the screen.
-     */
+    
+    
+    
     public void updateScreen()
     {
         ++this.panoramaTimer;
     }
-
-    /**
-     * Returns true if this GUI should pause the game when it is displayed in single-player
-     */
-    public boolean doesGuiPauseGame()
+  public boolean doesGuiPauseGame()
     {
         return false;
     }
 
-    /**
-     * Fired when a key is typed. This is the equivalent of KeyListener.keyTyped(KeyEvent e).
-     */
     protected void keyTyped(char p_73869_1_, int p_73869_2_) {}
 
-    /**
-     * Adds the buttons (and other controls) to the screen in question.
-     */
-    public void initGui()
+    @SuppressWarnings("unchecked")
+	public void initGui()
     {
         this.viewportTexture = new DynamicTexture(256, 256);
         this.field_110351_G = this.mc.getTextureManager().getDynamicTextureLocation("background", this.viewportTexture);
@@ -223,14 +215,11 @@ public class GuiMainMenuDayZ extends GuiScreen implements GuiYesNoCallback
             this.field_92019_w = this.field_92021_u + 24;
         }
     }
-
-    /**
-     * Adds Singleplayer and Multiplayer buttons on Main Menu for players who have bought the game.
-     */
-    private void addSingleplayerMultiplayerButtons(int p_73969_1_, int p_73969_2_)
+    @SuppressWarnings("unchecked")
+	private void addSingleplayerMultiplayerButtons(int p_73969_1_, int p_73969_2_)
     {
         this.buttonList.add(new GuiButton(1, this.width / 2 - 100, p_73969_1_, I18n.format("Play DayZ", new Object[0])));
-        this.buttonList.add(new GuiButton(2, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 1, I18n.format("Play MultiPlayer", new Object[0])));
+        this.buttonList.add(new GuiButton(2, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 1, I18n.format("Play Multiplayer", new Object[0])));
         GuiButton realmsButton = new GuiButton(14, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 2, I18n.format("Realms", new Object[0]));
         GuiButton fmlModButton = new GuiButton(6, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 2, "Forge Mods");
         fmlModButton.xPosition = this.width / 2 + 2;
@@ -239,11 +228,9 @@ public class GuiMainMenuDayZ extends GuiScreen implements GuiYesNoCallback
         this.buttonList.add(realmsButton);
         this.buttonList.add(fmlModButton);
     }
-
-    /**
-     * Adds Demo buttons on Main Menu for players who are playing Demo.
-     */
-    private void addDemoButtons(int p_73972_1_, int p_73972_2_)
+    
+    @SuppressWarnings("unchecked")
+	private void addDemoButtons(int p_73972_1_, int p_73972_2_)
     {
         this.buttonList.add(new GuiButton(11, this.width / 2 - 100, p_73972_1_, I18n.format("menu.playdemo", new Object[0])));
         this.buttonList.add(this.buttonResetDemo = new GuiButton(12, this.width / 2 - 100, p_73972_1_ + p_73972_2_ * 1, I18n.format("menu.resetdemo", new Object[0])));
@@ -317,7 +304,8 @@ public class GuiMainMenuDayZ extends GuiScreen implements GuiYesNoCallback
         realmsbridge.switchToRealms(this);
     }
 
-    public void confirmClicked(boolean p_73878_1_, int p_73878_2_)
+    @SuppressWarnings("unchecked")
+	public void confirmClicked(boolean p_73878_1_, int p_73878_2_)
     {
         if (p_73878_1_ && p_73878_2_ == 12)
         {
@@ -345,11 +333,32 @@ public class GuiMainMenuDayZ extends GuiScreen implements GuiYesNoCallback
             this.mc.displayGuiScreen(this);
         }
     }
+    
+    
+    
 
-    /**
-     * Draws the main menu panorama
-     */
-    private void drawPanorama(int p_73970_1_, int p_73970_2_, float p_73970_3_)
+    @SuppressWarnings("unused")
+	public void drawModelPlayer(int f, int f1, float f2)
+    {
+    	GL11.glPushMatrix();
+		GL11.glRotatef(180, 1.0F, 0.0F, 0.0F);
+		GL11.glRotatef(-45, 0.0F, 1.0F, 0.0F);
+		GL11.glRotatef(-45, 0.0F, 0.0F, 1.0F);
+		GL11.glTranslatef(0.3F, -0.9F, -0.2F);
+		
+		float scale = 0.7F;
+		GL11.glScalef(scale, scale, scale);
+		model.render(player, 10.0f, 10.0f, 10.0f, 10.0f, 10.0f, 10.0f);
+		GL11.glPopMatrix();
+	
+
+		
+		
+    	
+    }
+    
+    
+    private void drawBackGround(int p_73970_1_, int p_73970_2_, float p_73970_3_)
     {
         Tessellator tessellator = Tessellator.instance;
         GL11.glMatrixMode(GL11.GL_PROJECTION);
@@ -435,15 +444,13 @@ public class GuiMainMenuDayZ extends GuiScreen implements GuiYesNoCallback
         GL11.glEnable(GL11.GL_DEPTH_TEST);
     }
 
-    /**
-     * Rotate and blurs the skybox view in the main menu
-     */
+
     private void rotateAndBlurSkybox(float p_73968_1_)
     {
         this.mc.getTextureManager().bindTexture(this.field_110351_G);
         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_LINEAR);
         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_LINEAR);
-        GL11.glCopyTexSubImage2D(GL11.GL_TEXTURE_2D, 0, 0, 0, 0, 0, 256, 256);
+   //     GL11.glCopyTexSubImage2D(GL11.GL_TEXTURE_2D, 0, 0, 0, 0, 0, 256, 256);
         GL11.glEnable(GL11.GL_BLEND);
         OpenGlHelper.glBlendFunc(770, 771, 1, 0);
         GL11.glColorMask(true, true, true, false);
@@ -469,21 +476,19 @@ public class GuiMainMenuDayZ extends GuiScreen implements GuiYesNoCallback
         GL11.glColorMask(true, true, true, true);
     }
 
-    /**
-     * Renders the skybox in the main menu
-     */
+    
     private void renderSkybox(int p_73971_1_, int p_73971_2_, float p_73971_3_)
     {
         this.mc.getFramebuffer().unbindFramebuffer();
         GL11.glViewport(0, 0, 256, 256);
-        this.drawPanorama(p_73971_1_, p_73971_2_, p_73971_3_);
+        this.drawBackGround(p_73971_1_, p_73971_2_, p_73971_3_);
         this.rotateAndBlurSkybox(p_73971_3_);
         this.rotateAndBlurSkybox(p_73971_3_);
         this.rotateAndBlurSkybox(p_73971_3_);
         this.rotateAndBlurSkybox(p_73971_3_);
         this.rotateAndBlurSkybox(p_73971_3_);
         this.rotateAndBlurSkybox(p_73971_3_);
-        this.rotateAndBlurSkybox(p_73971_3_);
+        this.rotateAndBlurSkybox(p_73971_3_); 
         this.mc.getFramebuffer().bindFramebuffer(true);
         GL11.glViewport(0, 0, this.mc.displayWidth, this.mc.displayHeight);
         Tessellator tessellator = Tessellator.instance;
@@ -501,14 +506,15 @@ public class GuiMainMenuDayZ extends GuiScreen implements GuiYesNoCallback
         tessellator.draw();
     }
 
-    /**
-     * Draws the screen and all the components in it.
-     */
+    
+    
+    
     public void drawScreen(int p_73863_1_, int p_73863_2_, float p_73863_3_)
     {
         GL11.glDisable(GL11.GL_ALPHA_TEST);
         this.renderSkybox(p_73863_1_, p_73863_2_, p_73863_3_);
         GL11.glEnable(GL11.GL_ALPHA_TEST);
+        this.drawModelPlayer(1, 1, 1.0f);
         Tessellator tessellator = Tessellator.instance;
         short short1 = 274;
         int k = this.width / 2 - short1 / 2;
@@ -541,7 +547,7 @@ public class GuiMainMenuDayZ extends GuiScreen implements GuiYesNoCallback
         GL11.glScalef(f1, f1, f1);
         this.drawCenteredString(this.fontRendererObj, this.splashText, 0, -8, -256);
         GL11.glPopMatrix();
-        String s = "Minecraft 1.7.10";
+        String s = "DayZ 0.0.1";
 
         if (this.mc.isDemo())
         {
@@ -560,7 +566,7 @@ public class GuiMainMenuDayZ extends GuiScreen implements GuiYesNoCallback
         String s1 = "Copyright Mojang. Do not distribute!";
         this.drawString(this.fontRendererObj, s1, this.width - this.fontRendererObj.getStringWidth(s1) - 2, this.height - 10, -1);
       
-        String s2 = "Copyright AltisimoGames 2015.";
+        String s2 = "Copyright AltisimoGames North DayZ Dev Team 2015.";
         this.drawString(this.fontRendererObj, s2, this.width - this.fontRendererObj.getStringWidth(s2) - 2, this.height - 20, -1);
 
         
@@ -574,9 +580,6 @@ public class GuiMainMenuDayZ extends GuiScreen implements GuiYesNoCallback
         super.drawScreen(p_73863_1_, p_73863_2_, p_73863_3_);
     }
 
-    /**
-     * Called when the mouse is clicked.
-     */
     protected void mouseClicked(int p_73864_1_, int p_73864_2_, int p_73864_3_)
     {
         super.mouseClicked(p_73864_1_, p_73864_2_, p_73864_3_);

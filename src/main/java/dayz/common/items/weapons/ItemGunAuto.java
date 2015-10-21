@@ -12,7 +12,7 @@ public class ItemGunAuto extends ItemMod
 {
     private IGun gun;
 
-    public ItemGunAuto(int itemId, IGun iGun)
+    public ItemGunAuto(IGun iGun)
     {
         super();
         gun = iGun;

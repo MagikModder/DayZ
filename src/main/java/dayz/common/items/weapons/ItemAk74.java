@@ -2,9 +2,14 @@ package dayz.common.items.weapons;
 
 import net.minecraft.item.Item;
 
-public class ItemAk74 implements IGun
+public class ItemAk74 extends ItemGunAuto implements IGun
 {
-    @Override
+    public ItemAk74(IGun iGun) {
+		super(iGun);
+		
+	}
+
+	@Override
     public int getRounds()
     {
         return 30;
