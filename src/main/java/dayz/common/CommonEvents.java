@@ -5,8 +5,10 @@ import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraftforge.client.event.GuiOpenEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -15,6 +17,7 @@ import net.minecraftforge.event.world.WorldEvent;
 import com.mojang.realmsclient.exception.McoHttpException;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dayz.common.blocks.BlocksDayZ;
 import dayz.common.effects.EffectDayZ;
@@ -28,6 +31,7 @@ import dayz.common.misc.LootManager;
 
 
 
+@SideOnly(Side.CLIENT)
 public class CommonEvents
 {
     @SubscribeEvent
@@ -66,7 +70,7 @@ public class CommonEvents
             }
         }
     }
-    
+   /* 
     @SubscribeEvent
 	public void onGuiOpenEvent(GuiOpenEvent event) {
 		
@@ -77,19 +81,29 @@ public class CommonEvents
 				Minecraft.getMinecraft().currentScreen=(
 				
 						new GuiMainMenuDayZ());
-				
-//			} else {
-				
-//					Minecraft.getMinecraft().displayGuiScreen(
-//							
-//							new GuiMainMenuDayZ());
 			
-}
-    
+}	
     	
     	
 		}
+ 
+    */
+    
+    
+	@SubscribeEvent
+	public void clientLoggedIn(EntityJoinWorldEvent event){			
+	if (event.entity instanceof EntityPlayer){
 		
+		EntityPlayer player = (EntityPlayer) event.entity;
+		player.addChatMessage(new ChatComponentText("§0 Welcome to the Beta of The Reborn DayZ Mod!"));
+		  
+	
+	}
+	
+	
+	}
+	
+	
     @SubscribeEvent
     public void playerInteract(EntityInteractEvent event)
     {
